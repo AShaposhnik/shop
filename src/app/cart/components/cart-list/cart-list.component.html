@@ -1,0 +1,9 @@
+<div>Shopping cart:</div>
+<ng-template *ngIf="!isCartEmpty(); then thenBlock else elseBlock"></ng-template>
+<ng-template #thenBlock>
+  <div *ngFor="let product of getProductsInCart(); trackBy: trackByProduct">
+    <app-product [product]=product></app-product>
+    <button (click)="removeProductFromCart(product)">Remove from card</button>
+  </div>
+</ng-template>
+<ng-template #elseBlock>No items in the cart!</ng-template>
