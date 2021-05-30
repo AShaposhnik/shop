@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div><span class="bold-text">Name: </span> {{ product.name }} </div>
+    <div><span class="bold-text">Category: </span> {{ product.category }} </div>
+    <div><span class="bold-text">Description: </span> {{ product.description }} </div>
+    <div><span class="bold-text">Price: </span> {{ product.price }}$</div>
+    <div><span class="bold-text">Quantity: </span> {{ product.quantity }}</div>
+  </div>
+
+  <div class="row" [ngStyle]="{'font-size':'20px', 'font-family':'Verdana'}">
+    <button (click)="onRemoveProductFromCart(product)">
+      Remove from card
+    </button>
+    <button (click)="onIncrease(product)"> + </button>
+    <button (click)="onDecrease(product)"> - </button>
+  </div>
+
+</div>
