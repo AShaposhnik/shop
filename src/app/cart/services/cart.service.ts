@@ -1,57 +1,94 @@
 import {Injectable} from '@angular/core';
-import {Category, ProductModel} from '../../products/models/product.model';
+import {ProductModel} from '../../products/models/product.model';
 import {CartProductModel} from '../models/cart-product.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  private productsInCart: CartProductModel[] = [];
+  private cartProducts: CartProductModel[] = [];
+  private totalQuantity: number;
+  private totalSum: number;
 
   constructor() {
   }
 
-  public getProductsInCart(): CartProductModel[] {
-    return this.productsInCart;
+  public getProducts(): CartProductModel[] {
+    return this.cartProducts;
   }
 
-  public addProductToCart(product: ProductModel): void {
+  public getTotalQuantity(): number {
+    return this.totalQuantity;
+  }
+
+  public getTotalSum(): number {
+    return this.totalSum;
+  }
+
+  public addProduct(product: ProductModel): void {
     let isAlreadyInCart = false;
-    this.productsInCart.forEach((item, index) => {
+    this.cartProducts.forEach((item) => {
       if (item.id === product.id) {
         item.quantity += 1;
         isAlreadyInCart = true;
       }
     });
     if (!isAlreadyInCart) {
-      this.productsInCart.push({...product, quantity: 1});
+      this.cartProducts.push({...product, quantity: 1});
     }
+
+    this.updateCartData();
   }
 
-  public removeProductFromCart(product: ProductModel): void {
-    this.productsInCart.forEach((item, index) => {
+  public isEmptyCart(): boolean {
+    return this.cartProducts.length === 0;
+  }
+
+  public removeProduct(product: ProductModel): void {
+    this.cartProducts.forEach((item, index) => {
       if (item === product) {
-        this.productsInCart.splice(index, 1);
+        this.cartProducts.splice(index, 1);
       }
     });
+    this.updateCartData();
   }
 
-  public getTotalPrice(): number {
-    return this.productsInCart
+  public removeAllProducts(): void {
+    this.cartProducts = [];
+    this.updateCartData();
+  }
+
+  public updateCartData(): void {
+    this.totalQuantity = this.calculateNumberOfItems();
+    this.totalSum = this.calculateTotalPrice();
+  }
+
+  private calculateTotalPrice(): number {
+    return this.cartProducts
       .reduce((sum, product) => sum + (product.price * product.quantity || 0), 0);
   }
 
-  public getNumberOfItems(): number {
-    return this.productsInCart.reduce((sum, product) => sum + (product.quantity || 0), 0);
+  private calculateNumberOfItems(): number {
+    return this.cartProducts.reduce((sum, product) => sum + (product.quantity || 0), 0);
   }
 
   public increaseQuantity(product: CartProductModel): void {
-    product.quantity += 1;
+    this.changeQuantity(product, 1);
   }
 
   public decreaseQuantity(product: CartProductModel): void {
-    if (product.quantity > 0) {
-      product.quantity -= 1;
+    this.changeQuantity(product, -1);
+  }
+
+  private changeQuantity(product: CartProductModel, delta: number): void {
+    const possibleQuantity = product.quantity + delta;
+
+    if (possibleQuantity > 0) {
+      product.quantity = possibleQuantity;
+    } else if (possibleQuantity === 0) {
+      this.removeProduct(product);
     }
+
+    this.updateCartData();
   }
 }
