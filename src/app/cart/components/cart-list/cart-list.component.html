@@ -1,9 +1,9 @@
-<div>Shopping cart:</div>
+<h3>Shopping cart:</h3>
 <ng-template *ngIf="!isCartEmpty(); then thenBlock else elseBlock"></ng-template>
 <ng-template #thenBlock>
   <div>
-    <span>Number of products: {{ getNumberOfItems() }} </span>
-    <span>Total amount: {{ getTotalPrice() }}$ </span>
+    <h4>Number of products: {{ getTotalQuantity() }} </h4>
+    <h4>Total amount: {{ getTotalSum() }}$ </h4>
   </div>
   <div *ngFor="let product of getProductsInCart(); trackBy: trackByProduct">
     <div appHighlight>

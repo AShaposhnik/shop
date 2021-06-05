@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProductModel} from '../../../products/models/product.model';
 import {CartService} from '../../services/cart.service';
 import {CartProductModel} from '../../models/cart-product.model';
@@ -17,22 +17,22 @@ export class CartListComponent implements OnInit {
   }
 
   public getProductsInCart(): CartProductModel[] {
-    return this.cartService.getProductsInCart();
+    return this.cartService.getProducts();
   }
-  public getTotalPrice(): number {
-    return this.cartService.getTotalPrice();
+  public getTotalSum(): number {
+    return this.cartService.getTotalSum();
   }
 
-  public getNumberOfItems(): number {
-    return this.cartService.getNumberOfItems();
+  public getTotalQuantity(): number {
+    return this.cartService.getTotalQuantity();
   }
   public isCartEmpty(): boolean {
-    return this.cartService.getProductsInCart().length === 0;
+    return this.cartService.isEmptyCart();
   }
   public trackByProduct(index: number, product: ProductModel): number { return product.id; }
   public onRemoveProductFromCart(product: ProductModel): void {
     console.log('Product has been removed!');
-    this.cartService.removeProductFromCart(product);
+    this.cartService.removeProduct(product);
   }
 
   onDecrease(product: CartProductModel): void {

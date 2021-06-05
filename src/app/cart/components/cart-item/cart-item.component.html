@@ -1,18 +1,28 @@
-<div class="container">
-  <div class="row">
-    <div><span class="bold-text">Name: </span> {{ product.name }} </div>
-    <div><span class="bold-text">Category: </span> {{ product.category }} </div>
-    <div><span class="bold-text">Description: </span> {{ product.description }} </div>
-    <div><span class="bold-text">Price: </span> {{ product.price }}$</div>
-    <div><span class="bold-text">Quantity: </span> {{ product.quantity }}</div>
-  </div>
+<div>
+  <span class="bold-text">Name: </span>
+  <div>{{ product.name }}</div>
+</div>
+<div>
+  <span class="bold-text">Category: </span>
+  <div>{{ product.category }}</div>
+</div>
+<div>
+  <span class="bold-text">Description: </span>
+  <div class="limit">{{ product.description }}</div>
+</div>
+<div>
+  <span class="bold-text">Price:</span>
+  <div>{{ product.price }}$</div>
+</div>
+<div>
+  <span class="bold-text">Quantity: </span>
+  <div>{{ product.quantity }}</div>
+</div>
 
-  <div class="row" [ngStyle]="{'font-size':'20px', 'font-family':'Verdana'}">
-    <button (click)="onRemoveProductFromCart(product)">
-      Remove from card
-    </button>
-    <button (click)="onIncrease(product)"> + </button>
-    <button (click)="onDecrease(product)"> - </button>
-  </div>
-
+<div [ngStyle]="{'font-size':'20px', 'font-family':'Verdana'}">
+  <button (click)="onRemoveProductFromCart(product)" class="btn btn-danger">
+    Remove from card
+  </button>
+  <button (click)="onIncrease(product)" class="btn btn-info">+</button>
+  <button (click)="onDecrease(product)" class="btn btn-danger">-</button>
 </div>

@@ -1,0 +1,27 @@
+<div class="row">
+  <div appRandomTextColor>
+    <h3>Config: </h3>
+    <div>Id: {{ config.id }}</div>
+    <div>Login: {{ config.login }}</div>
+    <div>Email: {{ config.email }}</div>
+  </div>
+  <div appRandomTextColor="#ff0000">
+    <h3>Constants: </h3>
+    <div>Name: {{ appName }}</div>
+    <div>Version: {{ appVersion }}</div>
+    <div>Api Url: {{ appApiUrl }}</div>
+  </div>
+  <div appRandomTextColor>
+    <h3>Generated String and Number: </h3>
+    <div>#1: {{ generatedStr }}; {{ generatorService.getNewId() }}</div>
+    <div>#2: {{ generatedStr }}; {{ generatorService.getNewId() }}</div>
+    <div>#3: {{ generatedStr }}; {{ generatorService.getNewId() }}</div>
+  </div>
+
+  <div appRandomTextColor>
+    <h3>From local storage:</h3>
+    <div>
+      {{ localStorageValue }}
+    </div>
+  </div>
+</div>
