@@ -9,14 +9,12 @@ import {CartService} from '../../../cart/services/cart.service';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
-  products!: ProductModel[];
 
-  constructor(private productsService: ProductsService,
+  constructor(public productsService: ProductsService,
               private cartService: CartService) {
   }
 
   ngOnInit(): void {
-    this.products = this.productsService.getProducts();
   }
 
   onAddToCart(product: ProductModel): void {

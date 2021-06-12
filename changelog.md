@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.4] - 2021-06-12
+### Added
+- Task 4. Pipes
+- uppercase pipe added to category name at a product and cart-item components
+- currency pipe added to price at a product and cart-item components
+- async pipe applied to the product list at product-list component
+- orderBy pipe created and applied to the cart items list at cart-list component
+
 ## [0.0.3] - 2021-06-05
 ### Added
 - Task 3. Services and DI

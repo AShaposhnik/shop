@@ -11,12 +11,16 @@
     <div>Version: {{ appVersion }}</div>
     <div>Api Url: {{ appApiUrl }}</div>
   </div>
-  <div appRandomTextColor>
-    <h3>Generated String and Number: </h3>
-    <div>#1: {{ generatedStr }}; {{ generatorService.getNewId() }}</div>
-    <div>#2: {{ generatedStr }}; {{ generatorService.getNewId() }}</div>
-    <div>#3: {{ generatedStr }}; {{ generatorService.getNewId() }}</div>
-  </div>
+
+<!--ERROR Error: NG0100: ExpressionChangedAfterItHasBeenCheckedError: -->
+<!--Expression has changed after it was checked. Previous value: '3'. Current value: '6'-->
+
+<!--  <div appRandomTextColor>-->
+<!--    <h3>Generated String and Number: </h3>-->
+<!--    <div>#1: {{ generatedStr }}; {{ generatorService.getNewId() }}</div>-->
+<!--    <div>#2: {{ generatedStr }}; {{ generatorService.getNewId() }}</div>-->
+<!--    <div>#3: {{ generatedStr }}; {{ generatorService.getNewId() }}</div>-->
+<!--  </div>-->
 
   <div appRandomTextColor>
     <h3>From local storage:</h3>

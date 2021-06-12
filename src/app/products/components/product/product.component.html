@@ -1,8 +1,8 @@
 <div>
   <div><span class="bold-text">Name: </span> {{ product.name }} </div>
-  <div><span class="bold-text">Category: </span> {{ product.category }} </div>
+  <div><span class="bold-text">Category: </span> {{ product.category | uppercase }} </div>
   <div><span class="bold-text">Description: </span> {{ product.description }} </div>
-  <div><span class="bold-text">Price: </span> {{ product.price }}$</div>
+  <div><span class="bold-text">Price: </span> {{ product.price | currency: 'USD'}}</div>
   <div>
     <span class="bold-text">In stock: </span>
     <span>{{ product.isAvailable ? 'Yes' : 'No'}} </span>
