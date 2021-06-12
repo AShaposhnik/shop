@@ -33,8 +33,9 @@ export class CartService {
         isAlreadyInCart = true;
       }
     });
+
     if (!isAlreadyInCart) {
-      this.cartProducts.push({...product, quantity: 1});
+      this.cartProducts = [...this.cartProducts, {...product, quantity: 1}];
     }
 
     this.updateCartData();
@@ -61,6 +62,7 @@ export class CartService {
   public updateCartData(): void {
     this.totalQuantity = this.calculateNumberOfItems();
     this.totalSum = this.calculateTotalPrice();
+    this.cartProducts = [...this.cartProducts];
   }
 
   private calculateTotalPrice(): number {

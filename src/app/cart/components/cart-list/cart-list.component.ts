@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {ProductModel} from '../../../products/models/product.model';
 import {CartService} from '../../services/cart.service';
 import {CartProductModel} from '../../models/cart-product.model';
 
@@ -9,6 +8,9 @@ import {CartProductModel} from '../../models/cart-product.model';
   styleUrls: ['./cart-list.component.scss'],
 })
 export class CartListComponent implements OnInit {
+  sortOptions = ['name', 'price', 'quantity'];
+  selectedSortOption = 'name';
+  isAsc = false;
 
   constructor(private cartService: CartService) {
   }
@@ -19,6 +21,7 @@ export class CartListComponent implements OnInit {
   public getProductsInCart(): CartProductModel[] {
     return this.cartService.getProducts();
   }
+
   public getTotalSum(): number {
     return this.cartService.getTotalSum();
   }
@@ -26,11 +29,16 @@ export class CartListComponent implements OnInit {
   public getTotalQuantity(): number {
     return this.cartService.getTotalQuantity();
   }
+
   public isCartEmpty(): boolean {
     return this.cartService.isEmptyCart();
   }
-  public trackByProduct(index: number, product: ProductModel): number { return product.id; }
-  public onRemoveProductFromCart(product: ProductModel): void {
+
+  public trackByProduct(index: number, product: CartProductModel): number {
+    return product.id;
+  }
+
+  public onRemoveProductFromCart(product: CartProductModel): void {
     console.log('Product has been removed!');
     this.cartService.removeProduct(product);
   }

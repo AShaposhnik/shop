@@ -2,10 +2,27 @@
 <ng-template *ngIf="!isCartEmpty(); then thenBlock else elseBlock"></ng-template>
 <ng-template #thenBlock>
   <div>
-    <h4>Number of products: {{ getTotalQuantity() }} </h4>
-    <h4>Total amount: {{ getTotalSum() }}$ </h4>
+    <h4>Number of products: {{ getTotalQuantity() }}</h4>
+    <h4>Total amount: {{ getTotalSum() | currency: 'USD' }}</h4>
+    <div>
+      <label for="selectedSortOption">Order by:&nbsp;&nbsp;&nbsp;</label>
+      <select [(ngModel)]="selectedSortOption"
+              id="selectedSortOption"
+              name="selectedSortOption">
+        <option *ngFor="let sortOption of sortOptions"
+                [value]="sortOption">
+          {{sortOption}}
+        </option>
+      </select>
+      <span>&nbsp;&nbsp;&nbsp;</span>
+      <label for="sortingDirection">Ascending:&nbsp;&nbsp;&nbsp;</label>
+      <input type="checkbox"
+             [(ngModel)]="isAsc"
+             id="sortingDirection"
+             name="sortingDirection">
+    </div>
   </div>
-  <div *ngFor="let product of getProductsInCart(); trackBy: trackByProduct">
+  <div *ngFor="let product of (getProductsInCart() | orderBy:selectedSortOption:isAsc); trackBy: trackByProduct">
     <div appHighlight>
       <app-cart-item [product]=product
                      (removeFromCart)="onRemoveProductFromCart($event)"
