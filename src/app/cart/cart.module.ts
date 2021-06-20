@@ -1,7 +1,7 @@
-import {NgModule} from '@angular/core';
-import {CartItemComponent} from './components/cart-item/cart-item.component';
-import {SharedModule} from '../shared/shared.module';
-import {CartListComponent} from './components/cart-list/cart-list.component';
+import { NgModule } from '@angular/core';
+import { SharedModule } from '../shared/shared.module';
+import { CartListComponent, CartItemComponent } from './components';
+import { CartRoutingModule } from './cart-routing.module';
 
 
 @NgModule({
@@ -14,6 +14,7 @@ import {CartListComponent} from './components/cart-list/cart-list.component';
     CartListComponent
   ],
   imports: [
+    CartRoutingModule,
     SharedModule
   ]
 })
