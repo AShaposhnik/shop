@@ -9,12 +9,12 @@ import { CartModule } from './cart/cart.module';
 import { SharedModule } from './shared/shared.module';
 import { ProductsModule } from './products/products.module';
 import { LayoutModule } from './layout/layout.module';
-import { OrdersModule } from './orders/orders.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    FirstComponent,
+    FirstComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +22,6 @@ import { OrdersModule } from './orders/orders.module';
     CartModule,
     LayoutModule,
     SharedModule,
-    OrdersModule,
     // must be last
     AppRoutingModule
   ],

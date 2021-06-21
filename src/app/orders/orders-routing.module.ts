@@ -6,11 +6,9 @@ import { IsCartEmptyGuard } from '../cart/guards/cart-empty.guard';
 
 const routes: Routes = [
   {
-    path: 'order',
+    path: '',
     component: ProcessOrderComponent,
-    canLoad: [IsCartEmptyGuard],
     canActivate: [IsCartEmptyGuard],
-    loadChildren: () => import('./orders.module').then(m => m.OrdersModule)
   },
 ];
 

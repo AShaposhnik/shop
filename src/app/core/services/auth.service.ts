@@ -27,4 +27,8 @@ export class AuthService {
   logout(): void {
     this.isLoggedIn = false;
   }
+
+  hasRole(role: UserRole): boolean {
+    return this.role === role;
+  }
 }
