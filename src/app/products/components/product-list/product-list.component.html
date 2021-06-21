@@ -1,6 +1,9 @@
 <h3>List of products: </h3>
 <div *ngFor="let product of (productsService.getProducts() | async)">
-  <app-product [product]=product (addToCart)=onAddToCart($event)></app-product>
+  <app-product [product]=product
+               (addToCart)=onAddToCart($event)
+               (viewProduct)="onViewProduct($event)">
+  </app-product>
 </div>
 
 

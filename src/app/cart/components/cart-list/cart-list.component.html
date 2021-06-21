@@ -1,35 +1,40 @@
 <h3>Shopping cart:</h3>
 <ng-template *ngIf="!isCartEmpty(); then thenBlock else elseBlock"></ng-template>
 <ng-template #thenBlock>
-  <div>
-    <h4>Number of products: {{ getTotalQuantity() }}</h4>
-    <h4>Total amount: {{ getTotalSum() | currency: 'USD' }}</h4>
-    <div>
-      <label for="selectedSortOption">Order by:&nbsp;&nbsp;&nbsp;</label>
-      <select [(ngModel)]="selectedSortOption"
-              id="selectedSortOption"
-              name="selectedSortOption">
-        <option *ngFor="let sortOption of sortOptions"
-                [value]="sortOption">
-          {{sortOption}}
-        </option>
-      </select>
-      <span>&nbsp;&nbsp;&nbsp;</span>
-      <label for="sortingDirection">Ascending:&nbsp;&nbsp;&nbsp;</label>
-      <input type="checkbox"
-             [(ngModel)]="isAsc"
-             id="sortingDirection"
-             name="sortingDirection">
+  <div class="row">
+    <div class="col-md-3">
+      <h4>Number of products: {{ getTotalQuantity() }}</h4>
+      <h4>Total amount: {{ getTotalSum() | currency: 'USD' }}</h4>
+      <div>
+        <label for="selectedSortOption">Order by:&nbsp;&nbsp;&nbsp;</label>
+        <select [(ngModel)]="selectedSortOption"
+                id="selectedSortOption"
+                name="selectedSortOption">
+          <option *ngFor="let sortOption of sortOptions"
+                  [value]="sortOption">
+            {{sortOption}}
+          </option>
+        </select>
+        <span>&nbsp;&nbsp;&nbsp;</span>
+        <label for="sortingDirection">Ascending:&nbsp;&nbsp;&nbsp;</label>
+        <input type="checkbox"
+               [(ngModel)]="isAsc"
+               id="sortingDirection"
+               name="sortingDirection">
+      </div>
+    </div>
+    <div class="col-md-3">
+      <button class="btn btn-success">
+        Process Order
+      </button>
     </div>
   </div>
   <div *ngFor="let product of (getProductsInCart() | orderBy:selectedSortOption:isAsc); trackBy: trackByProduct">
-    <div appHighlight>
-      <app-cart-item [product]=product
-                     (removeFromCart)="onRemoveProductFromCart($event)"
-                     (decrease)="onDecrease($event)"
-                     (increase)="onIncrease($event)">
-      </app-cart-item>
-    </div>
+    <app-cart-item [product]=product
+                   (removeFromCart)="onRemoveProductFromCart($event)"
+                   (decrease)="onDecrease($event)"
+                   (increase)="onIncrease($event)">
+    </app-cart-item>
   </div>
 </ng-template>
 <ng-template #elseBlock>No items in the cart!</ng-template>
