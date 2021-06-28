@@ -18,6 +18,7 @@ export class CartListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.cartService.restoreCartFromLocalStorage();
   }
 
   getProductsInCart(): CartProductModel[] {

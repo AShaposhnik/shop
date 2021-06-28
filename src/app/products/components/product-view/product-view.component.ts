@@ -37,7 +37,7 @@ export class ProductViewComponent implements OnInit {
 
             return productId !== null
               ? this.productService.getProduct(productId)
-              : of(new ProductModel()); // possible problems
+              : of(new ProductModel());
           }
         )
       )
@@ -47,5 +47,9 @@ export class ProductViewComponent implements OnInit {
   onAddToCart(product: ProductModel): void {
     console.log('Product has added to the cart!');
     this.addToCart.emit(product);
+  }
+
+  onGoBack(): void {
+    this.router.navigate(['/products-list']);
   }
 }

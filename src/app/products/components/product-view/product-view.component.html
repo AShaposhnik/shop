@@ -1,9 +1,13 @@
 <div class="panel panel-default">
-  <div class="panel-heading">
+  <div class="panel-heading btn-toolbar">
     <button [disabled]="!product.isAvailable"
             (click)="onAddToCart(product)"
             class="btn btn-success">
       Add to cart
+    </button>
+    <button class="btn btn-primary"
+            type="button"
+            (click)="onGoBack()">Back
     </button>
   </div>
   <div class="panel-body">
