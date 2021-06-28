@@ -10,6 +10,7 @@ export class ProductComponent implements OnInit {
   @Input() product: ProductModel;
 
   @Output() addToCart = new EventEmitter<ProductModel>();
+  @Output() viewProduct = new EventEmitter<ProductModel>();
 
   constructor() { }
 
@@ -19,5 +20,10 @@ export class ProductComponent implements OnInit {
   onAddToCart(product: ProductModel): void {
     console.log('Product has added to the cart!');
     this.addToCart.emit(product);
+  }
+
+  onViewProduct(product: ProductModel): void {
+    console.log('Product has been viewed!');
+    this.viewProduct.emit(product);
   }
 }

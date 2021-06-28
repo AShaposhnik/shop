@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {CartService} from '../../services/cart.service';
-import {CartProductModel} from '../../models/cart-product.model';
+import { Component, OnInit } from '@angular/core';
+import { CartService } from '../../services/cart.service';
+import { CartProductModel } from '../../models/cart-product.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart-list',
@@ -12,33 +13,35 @@ export class CartListComponent implements OnInit {
   selectedSortOption = 'name';
   isAsc = false;
 
-  constructor(private cartService: CartService) {
+  constructor(private cartService: CartService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
+    this.cartService.restoreCartFromLocalStorage();
   }
 
-  public getProductsInCart(): CartProductModel[] {
+  getProductsInCart(): CartProductModel[] {
     return this.cartService.getProducts();
   }
 
-  public getTotalSum(): number {
+  getTotalSum(): number {
     return this.cartService.getTotalSum();
   }
 
-  public getTotalQuantity(): number {
+  getTotalQuantity(): number {
     return this.cartService.getTotalQuantity();
   }
 
-  public isCartEmpty(): boolean {
+  isCartEmpty(): boolean {
     return this.cartService.isEmptyCart();
   }
 
-  public trackByProduct(index: number, product: CartProductModel): number {
+  trackByProduct(index: number, product: CartProductModel): number | null {
     return product.id;
   }
 
-  public onRemoveProductFromCart(product: CartProductModel): void {
+  onRemoveProductFromCart(product: CartProductModel): void {
     console.log('Product has been removed!');
     this.cartService.removeProduct(product);
   }
@@ -49,5 +52,10 @@ export class CartListComponent implements OnInit {
 
   onIncrease(product: CartProductModel): void {
     this.cartService.increaseQuantity(product);
+  }
+
+  onProcessOrder(): void {
+    const link = ['/order'];
+    this.router.navigate(link);
   }
 }

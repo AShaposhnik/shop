@@ -1,0 +1,35 @@
+<div class="panel panel-default">
+  <div class="panel-heading btn-toolbar">
+    <button (click)="onEdit(product)"
+            class="btn btn-info">
+      Edit
+    </button>
+    <button (click)="onRemove(product)"
+            class="btn btn-danger">
+      Remove
+    </button>
+  </div>
+  <div class="panel-body">
+    <div>
+      <span class="bold-text">Name: </span>
+      {{ product.name }}
+    </div>
+    <div>
+      <span class="bold-text">Category: </span>
+      {{ product.category | uppercase }}
+    </div>
+    <div>
+      <span class="bold-text">Description: </span>
+      {{ product.description }}
+    </div>
+    <div>
+      <span class="bold-text">Price: </span>
+      {{ product.price | currency: 'USD'}}
+    </div>
+    <div>
+      <span class="bold-text">In stock: </span>
+      <span>{{ product.isAvailable ? 'Yes' : 'No'}} </span>
+    </div>
+  </div>
+  <br/><br/>
+</div>

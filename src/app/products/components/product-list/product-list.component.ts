@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductsService} from '../../services/products.service';
 import {ProductModel} from '../../models/product.model';
-import {CartService} from '../../../cart/services/cart.service';
+import {CartService} from '../../../cart';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -11,6 +12,7 @@ import {CartService} from '../../../cart/services/cart.service';
 export class ProductListComponent implements OnInit {
 
   constructor(public productsService: ProductsService,
+              private router: Router,
               private cartService: CartService) {
   }
 
@@ -21,4 +23,8 @@ export class ProductListComponent implements OnInit {
     this.cartService.addProduct(product);
   }
 
+  onViewProduct(product: ProductModel): void {
+    const link = ['/product', product.id];
+    this.router.navigate(link);
+  }
 }

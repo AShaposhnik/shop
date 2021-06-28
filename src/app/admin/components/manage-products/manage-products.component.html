@@ -1,0 +1,6 @@
+<div *ngFor="let product of (productsService.getProducts() | async)">
+  <app-product [product]=product
+               (removeProduct)="onRemoveProduct($event)"
+               (editProduct)="onEditProduct($event)">
+  </app-product>
+</div>

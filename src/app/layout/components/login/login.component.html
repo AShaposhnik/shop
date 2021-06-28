@@ -1,0 +1,21 @@
+<h2>LOGIN</h2>
+<p>State: {{message}}</p>
+<p>
+  <button class="btn btn-primary" (click)="onLogout()" *ngIf="authService.isLoggedIn; else loginBtn">
+    Logout
+  </button>
+
+  <ng-template #loginBtn>
+    <label for="selectedRole">Login as: </label>
+    <select [(ngModel)]="selectedRole"
+            id="selectedRole"
+            name="selectedRole">
+      <option *ngFor="let role of roles"
+              [value]="role">
+        {{role}}
+      </option>
+    </select>
+    <br/><br/>
+    <button class="btn btn-primary" (click)="onLogin(selectedRole)">Login</button>
+  </ng-template>
+</p>

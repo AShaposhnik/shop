@@ -1,6 +1,8 @@
-import {Injectable} from '@angular/core';
+import { Injectable, InjectionToken } from '@angular/core';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class LocalStorageService {
 
   constructor() {
@@ -19,4 +21,4 @@ export class LocalStorageService {
   }
 }
 
-export const localStorage = new LocalStorageService();
+export const localStorage = new InjectionToken<LocalStorageService>('Local storage service');

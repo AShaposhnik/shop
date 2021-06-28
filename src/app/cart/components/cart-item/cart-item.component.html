@@ -1,28 +1,42 @@
-<div>
-  <span class="bold-text">Name:</span>
-  <div>{{ product.name }}</div>
-</div>
-<div>
-  <span class="bold-text">Category:</span>
-  <div>{{ product.category | uppercase }}</div>
-</div>
-<div>
-  <span class="bold-text">Description:</span>
-  <div class="limit">{{ product.description }}</div>
-</div>
-<div>
-  <span class="bold-text">Price:</span>
-  <div>{{ product.price | currency: 'USD' }}</div>
-</div>
-<div>
-  <span class="bold-text">Quantity:</span>
-  <div>{{ product.quantity }}</div>
-</div>
-
-<div [ngStyle]="{'font-size':'20px', 'font-family':'Verdana'}">
-  <button (click)="onRemoveProductFromCart(product)" class="btn btn-danger">
-    Remove from card
-  </button>
-  <button (click)="onIncrease(product)" class="btn btn-info">+</button>
-  <button (click)="onDecrease(product)" class="btn btn-danger">-</button>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="row">
+      <div class="col-md-1">
+        <button (click)="onIncrease(product)" class="btn btn-info">+</button>
+      </div>
+      <div class="col-md-1">
+        <h4>{{ product.quantity }}</h4>
+      </div>
+      <div class="col-md-1">
+        <button (click)="onDecrease(product)" class="btn btn-warning">-</button>
+      </div>
+      <div class="col-md-9 text-right">
+        <button (click)="onRemoveProductFromCart(product)" class="btn btn-danger">
+          X
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body" appHighlight>
+    <div>
+      <span class="bold-text">Name:</span>
+      <div>{{ product.name }}</div>
+    </div>
+    <div>
+      <span class="bold-text">Category:</span>
+      <div>{{ product.category | uppercase }}</div>
+    </div>
+    <div>
+      <span class="bold-text">Description:</span>
+      <div class="limit">{{ product.description }}</div>
+    </div>
+    <div>
+      <span class="bold-text">Price:</span>
+      <div>{{ product.price | currency: 'USD' }}</div>
+    </div>
+    <div>
+      <span class="bold-text">Quantity:</span>
+      <div>{{ product.quantity }}</div>
+    </div>
+  </div>
 </div>

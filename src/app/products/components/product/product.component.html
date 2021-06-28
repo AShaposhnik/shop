@@ -1,17 +1,36 @@
-<div>
-  <div><span class="bold-text">Name: </span> {{ product.name }} </div>
-  <div><span class="bold-text">Category: </span> {{ product.category | uppercase }} </div>
-  <div><span class="bold-text">Description: </span> {{ product.description }} </div>
-  <div><span class="bold-text">Price: </span> {{ product.price | currency: 'USD'}}</div>
-  <div>
-    <span class="bold-text">In stock: </span>
-    <span>{{ product.isAvailable ? 'Yes' : 'No'}} </span>
+<div class="panel panel-default">
+  <div class="panel-heading btn-toolbar">
+    <button (click)="onViewProduct(product)"
+            class="btn btn-info">
+      View
+    </button>
+    <button [disabled]="!product.isAvailable"
+            (click)="onAddToCart(product)"
+            class="btn btn-success">
+      Add to cart
+    </button>
   </div>
-  <button [disabled]="!product.isAvailable"
-          (click)="onAddToCart(product)"
-          class="btn btn-success">
-    Add to cart
-  </button>
-  <br>
-  <br>
+  <div class="panel-body">
+    <div>
+      <span class="bold-text">Name: </span>
+      {{ product.name }}
+    </div>
+    <div>
+      <span class="bold-text">Category: </span>
+      {{ product.category | uppercase }}
+    </div>
+    <div>
+      <span class="bold-text">Description: </span>
+      {{ product.description }}
+    </div>
+    <div>
+      <span class="bold-text">Price: </span>
+      {{ product.price | currency: 'USD'}}
+    </div>
+    <div>
+      <span class="bold-text">In stock: </span>
+      <span>{{ product.isAvailable ? 'Yes' : 'No'}} </span>
+    </div>
+  </div>
+  <br/><br/>
 </div>

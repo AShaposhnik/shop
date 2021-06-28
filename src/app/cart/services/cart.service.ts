@@ -1,6 +1,7 @@
-import {Injectable} from '@angular/core';
-import {ProductModel} from '../../products/models/product.model';
-import {CartProductModel} from '../models/cart-product.model';
+import { Injectable } from '@angular/core';
+import { ProductModel } from '../../products/models/product.model';
+import { CartProductModel } from '../models/cart-product.model';
+import { LocalStorageService } from '../../core/services/local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +11,21 @@ export class CartService {
   private totalQuantity: number;
   private totalSum: number;
 
-  constructor() {
+  constructor(private localStorageService: LocalStorageService) {
   }
 
   public getProducts(): CartProductModel[] {
     return this.cartProducts;
+  }
+
+  public restoreCartFromLocalStorage(): void {
+    const item = this.localStorageService.getItem('cart');
+
+    if (item instanceof Array) {
+      this.cartProducts = item;
+    } else {
+      this.cartProducts = [];
+    }
   }
 
   public getTotalQuantity(): number {
@@ -35,7 +46,7 @@ export class CartService {
     });
 
     if (!isAlreadyInCart) {
-      this.cartProducts = [...this.cartProducts, {...product, quantity: 1}];
+      this.cartProducts = [...this.cartProducts, { ...product, quantity: 1 }];
     }
 
     this.updateCartData();
@@ -63,6 +74,8 @@ export class CartService {
     this.totalQuantity = this.calculateNumberOfItems();
     this.totalSum = this.calculateTotalPrice();
     this.cartProducts = [...this.cartProducts];
+
+    this.localStorageService.setItem('cart', this.cartProducts);
   }
 
   private calculateTotalPrice(): number {

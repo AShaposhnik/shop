@@ -1,0 +1,25 @@
+<h3>Admin</h3>
+<nav>
+  <ul class="nav nav-tabs">
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <a routerLink="./"
+         queryParamsHandling="preserve">
+        Dashboard
+      </a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="./products"
+         queryParamsHandling="preserve">Manage Products</a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="./orders"
+         queryParamsHandling="preserve">Manage Orders</a>
+    </li>
+
+    <li routerLinkActive="active">
+      <a routerLink="./product/add"
+         queryParamsHandling="preserve">Add/Edit Product</a>
+    </li>
+  </ul>
+</nav>
+<router-outlet></router-outlet>
