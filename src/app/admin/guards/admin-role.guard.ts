@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, CanLoad, UrlTree, UrlSegment, Route } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, CanLoad, Route, Router, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../core';
 import { UserRole } from '../../core/models/user-role';
@@ -9,19 +9,29 @@ import { UserRole } from '../../core/models/user-role';
   providedIn: 'root'
 })
 export class HasRoleAdminGuard implements CanActivate, CanLoad {
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService,
+              private router: Router) {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
     Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
     console.log('HasRoleAdminGuard CanActivate has been called!');
-    return this.authService.hasRole(UserRole.ADMIN);
+    return this.hasRoleAdmin();
   }
 
   canLoad(route: Route, segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     console.log('HasRoleAdminGuard CanLoad has been called!');
-    return this.authService.hasRole(UserRole.ADMIN);
+    return this.hasRoleAdmin();
+  }
+
+  private hasRoleAdmin(): boolean {
+    if (this.authService.hasRole(UserRole.ADMIN)) {
+      return true;
+    }
+
+    this.router.navigate(['/forbidden-403']);
+    return false;
   }
 
 }

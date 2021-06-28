@@ -9,6 +9,7 @@ import { CartModule } from './cart/cart.module';
 import { SharedModule } from './shared/shared.module';
 import { ProductsModule } from './products/products.module';
 import { LayoutModule } from './layout/layout.module';
+import { SpinnerModule } from './widgets/spinner/spinner.module';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { LayoutModule } from './layout/layout.module';
     CartModule,
     LayoutModule,
     SharedModule,
+    SpinnerModule.forRoot(),
     // must be last
     AppRoutingModule
   ],

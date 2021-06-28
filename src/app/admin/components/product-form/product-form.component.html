@@ -1,0 +1,69 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="pannel-title">
+      Product Form
+    </h4>
+  </div>
+  <div class="panel-body">
+    <form (ngSubmit)="onSaveProduct()" id="product-form" #form="ngForm">
+      <div class="form-group">
+        <label for="name">Product Name</label>
+        <input type="text"
+               class="form-control"
+               id="name" name="name"
+               placeholder="Name"
+               required
+               [(ngModel)]="product.name">
+      </div>
+      <div class="form-group">
+        <label for="price">Product Price</label>
+        <input type="text"
+               class="form-control"
+               id="price" name="price"
+               placeholder="5.00"
+               required
+               [(ngModel)]="product.price">
+      </div>
+      <div class="form-group">
+        <label for="selectedCategory">Product Category</label>
+        <select [(ngModel)]="selectedCategory"
+                id="selectedCategory"
+                name="selectedCategory">
+          <option *ngFor="let category of categories"
+                  [value]="category">
+            {{category}}
+          </option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="available">In stock</label>
+        <input type="checkbox"
+               class="form-control"
+               id="available" name="available"
+               [(ngModel)]="product.isAvailable">
+      </div>
+      <div class="form-group">
+        <label for="description">Product Description</label>
+        <textarea type="text"
+                  class="form-control"
+                  id="description" name="description"
+                  placeholder="Description"
+                  [(ngModel)]="product.description">
+        </textarea>
+      </div>
+      <div class="btn-toolbar">
+        <button class="btn btn-primary"
+                [disabled]="form.invalid"
+                type="submit">Save
+        </button>
+        <button class="btn btn-primary"
+                type="button"
+                (click)="onGoBack()">Back
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+</div>
+

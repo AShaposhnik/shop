@@ -53,7 +53,6 @@ export class ProductsService {
     return this.products$;
   }
 
-  // possible problems
   public getProduct(id: number | string): Observable<ProductModel> {
     return this.products$.pipe(
       map((products: Array<ProductModel>) => {
@@ -66,4 +65,23 @@ export class ProductsService {
     );
   }
 
+  updateProduct(product: ProductModel): void {
+    const i = productList.findIndex(p => p.id === product.id);
+
+    if (i > -1) {
+      productList.splice(i, 1, product);
+    }
+  }
+
+  deleteProduct(product: ProductModel): void {
+    const i = productList.findIndex(p => p.id === product.id);
+
+    if (i > -1) {
+      productList.splice(i, 1);
+    }
+  }
+
+  createProduct(product: ProductModel): void {
+    productList.push(product);
+  }
 }

@@ -1,5 +1,5 @@
 export interface Product {
-  id: number;
+  id: number | null;
   name: string;
   description: string;
   price: number;
@@ -9,7 +9,7 @@ export interface Product {
 
 export class ProductModel implements Product {
   constructor(
-    public id: number = 0,
+    public id: number | null = 0,
     public name: string = '',
     public description: string = '',
     public price: number = 0,

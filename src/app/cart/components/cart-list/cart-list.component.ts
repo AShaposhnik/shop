@@ -36,7 +36,7 @@ export class CartListComponent implements OnInit {
     return this.cartService.isEmptyCart();
   }
 
-  trackByProduct(index: number, product: CartProductModel): number {
+  trackByProduct(index: number, product: CartProductModel): number | null {
     return product.id;
   }
 

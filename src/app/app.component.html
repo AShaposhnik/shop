@@ -46,13 +46,19 @@
 </div>
 
 <div class="container">
-  <div class="row">
-    <router-outlet
-      #routerOutlet="outlet"
-      (activate)='onActivate($event, routerOutlet)'
-      (deactivate)='onDeactivate($event, routerOutlet)'>
-    </router-outlet>
-  </div>
+  <ng-template *ngIf="spinnerService.isVisible(); then thenBlock else elseBlock"></ng-template>
+  <ng-template #thenBlock>
+    <app-spinner></app-spinner>
+  </ng-template>
+  <ng-template #elseBlock>
+    <div class="row">
+      <router-outlet
+        #routerOutlet="outlet"
+        (activate)='onActivate($event, routerOutlet)'
+        (deactivate)='onDeactivate($event, routerOutlet)'>
+      </router-outlet>
+    </div>
+  </ng-template>
 </div>
 
 

@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           // If no redirect has been set, use the default
           const redirect = this.authService.redirectUrl
             ? this.authService.redirectUrl
-            : '/admin';
+            : '/products-list';
 
           const navigationExtras: NavigationExtras = {
             queryParamsHandling: 'preserve',
