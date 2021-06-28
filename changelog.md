@@ -6,6 +6,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.5] - 2021-06-28
+### Added
+- Task 5. Routing
+- Route '/products-list ' to 'ProductListComponent'
+- Route '/product/:productID' to 'ProductViewComponent'
+- Route '/cart' to 'CartListComponent'
+- Route '/order' to ProcessOrderComponent. + CanLoad/CanActivate Guard (IsCartEmptyGuard)
+- Admin Panel with ability of editing and adding products + CanLoad/CanActivate Guard (HasRoleAdminGuard)
+- Route /admin/product/edit/:productID + resolve guard + CanDeactivate Guard
+- saving cart state in localStorage
+
 ## [0.0.4] - 2021-06-12
 ### Added
 - Task 4. Pipes
